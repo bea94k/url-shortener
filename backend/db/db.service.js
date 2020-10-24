@@ -21,4 +21,4 @@ const DBconnection = () => {
   });
 };
 
-module.exports = { DBconnection };
+module.exports = DBconnection;

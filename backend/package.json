@@ -8,5 +8,8 @@
     "start": "node app.js"
   },
   "author": "Beata Kusnierz (https://github.com/bea94k)",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }

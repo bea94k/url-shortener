@@ -1,0 +1,12 @@
+{
+  "name": "url-shortener-backend",
+  "version": "1.0.0",
+  "description": "Backend of a full-stack web app for shortening URLs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Beata Kusnierz (https://github.com/bea94k)",
+  "license": "MIT"
+}

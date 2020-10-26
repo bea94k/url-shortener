@@ -19,9 +19,16 @@ app.get("/ping", (req, res) => {
   res.send("Hello, seems like the testing endpoint works!");
 });
 
-// testing the schema and connection
-urlService.createUrl("sampleUrl").then((response) => {
-  console.log(response);
+// get all entries from the DB
+app.get("/getAll", (req, res) => {
+  urlService
+    .getAll()
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      return err;
+    });
 });
 
 app.listen(PORT, HOST, () => {

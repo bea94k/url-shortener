@@ -1,6 +1,11 @@
 // import the model to be able to create new instances
 const Url = require("./url.schema");
 
+const getAll = async () => {
+  const allEntries = await Url.find();
+  return allEntries;
+};
+
 const createUrl = async (originalUrl) => {
   const newUrl = new Url({
     ID: "abc",
@@ -18,4 +23,4 @@ const createUrl = async (originalUrl) => {
     });
 };
 
-module.exports = { createUrl };
+module.exports = { getAll, createUrl };

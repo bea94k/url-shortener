@@ -7,6 +7,12 @@ const getAll = async () => {
   return allEntries;
 };
 
+const getOne = async (key, value) => {
+  const foundEntries = await Url.find({ [key]: value }).exec();
+  //returns an array of entries, even if just one entry or empty array
+  return foundEntries;
+};
+
 const createUrl = async (originalUrl) => {
   const randomSixChars = await helpers.randomChars(6);
 
@@ -26,4 +32,4 @@ const createUrl = async (originalUrl) => {
     });
 };
 
-module.exports = { getAll, createUrl };
+module.exports = { getAll, getOne, createUrl };

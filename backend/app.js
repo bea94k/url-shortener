@@ -35,6 +35,29 @@ app.get("/ping", (req, res) => {
     });
 }); */
 
+// get to a specific shortened url - redirect to the original url
+app.get("/:shortenedPath", (req, res) => {
+  urlService
+    .getOne("shortenedPath", `/${req.params.shortenedPath}`)
+    .then((response) => {
+      // response is an array - empty for no entries in db
+      if (response.length === 1) {
+        res.redirect(`http://${response[0].originalUrl}`);
+      } else if (response.length === 0) {
+        res.status(404).send("no entries found");
+      } else {
+        res
+          .status(500)
+          .send(
+            "Oops, something went wrong. Do we accidentally have two entries with that path?"
+          );
+      }
+    })
+    .catch((err) => {
+      return err;
+    });
+});
+
 // save a new url
 app.post("/shortenme", (req, res) => {
   const strippedUrl = helpers.stripUrl(req.body.originalUrl);

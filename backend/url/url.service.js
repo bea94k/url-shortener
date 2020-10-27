@@ -1,4 +1,5 @@
 // import the model to be able to create new instances
+const helpers = require("../helpers");
 const Url = require("./url.schema");
 
 const getAll = async () => {
@@ -7,16 +8,18 @@ const getAll = async () => {
 };
 
 const createUrl = async (originalUrl) => {
+  const randomSixChars = await helpers.randomChars(6);
+
   const newUrl = new Url({
-    ID: "abc",
     originalUrl: originalUrl,
-    shortenedUrl: "localhost:3000/abc",
+    shortenedPath: `/${randomSixChars}`,
   });
   return newUrl
     .save()
     .then((doc) => {
+      console.log("Entry saved to db is:");
       console.log(doc);
-      return doc.shortenedUrl;
+      return doc.shortenedPath;
     })
     .catch((err) => {
       return err;

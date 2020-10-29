@@ -25,18 +25,26 @@ const stripUrl = (url) => {
   return url;
 };
 
+// take only the domain out of the url
+// to be used on urls stripped from http://
+const domainOfUrl = (url) => {
+  if (url.indexOf("/") !== -1) {
+    url = url.slice(0, url.indexOf("/"));
+  }
+  return url;
+};
+
 //regex for domains
 // one letter or digit
 // optional: 0-62 letters or digits or dash, last one can't be a dash
 // zero or one of the above segment
 // dot and same rules for the segment after the dot
 // one or more ".something" segments
-// optional / and same rule for subpage addresses
 // all case insensitive
-const domainRegex = /^[a-z\d]([a-z\d-]{0,61}[a-z\d])?(.[a-z\d]([a-z\d-]{0,61}[a-z\d])?)+(\/[a-z\d-]{0,61}[a-z\d])*$/i;
+const domainRegex = /^[a-z\d]([a-z\d-]{0,61}[a-z\d])?(.[a-z\d]([a-z\d-]{0,61}[a-z\d])?)+$/i;
 
-const isUrlValid = (url) => {
-  var obj = domainRegex.exec(url);
+const isDomainValid = (domain) => {
+  var obj = domainRegex.exec(domain);
   // if url passes the regex, object exists, otherwise returns null
   if (obj != null) {
     return true;
@@ -45,4 +53,4 @@ const isUrlValid = (url) => {
   }
 };
 
-module.exports = { randomChars, stripUrl, isUrlValid };
+module.exports = { randomChars, stripUrl, domainOfUrl, isDomainValid };

@@ -60,13 +60,18 @@ app.get("/:shortenedPath", (req, res) => {
 
 // save a new url
 app.post("/shortenme", async (req, res) => {
+  // take away http or www from the beginning - the original url to be eventually saved to db
   const strippedUrl = helpers.stripUrl(req.body.originalUrl);
   console.log("stripped url: " + strippedUrl);
-  if (helpers.isUrlValid(strippedUrl)) {
-    console.log("stripped url is valid");
+
+  // take the domain out of the url
+  const domain = helpers.domainOfUrl(strippedUrl);
+
+  if (helpers.isDomainValid(domain)) {
+    console.log("stripped url has a valid domain");
     // check if the stripped url is already in the db
     const urlFromDB = await urlService.getOne("originalUrl", strippedUrl);
-    console.log(urlFromDB);
+
     if (urlFromDB.length === 1) {
       // TO DO: add 'http:..' and my domain here
       res.send(urlFromDB[0].shortenedPath);

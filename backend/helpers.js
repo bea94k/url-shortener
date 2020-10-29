@@ -10,21 +10,17 @@ const randomChars = (
 
 // strip the url from http, https and/or www
 const stripUrl = (url) => {
-  //console.log(url);
   if (url.indexOf("http://") === 0) {
-    //console.log("found http at the very beginning of the url");
+    // if found, cut out the http://
     url = url.slice(7);
-    //console.log(url);
   }
   if (url.indexOf("https://") === 0) {
-    //console.log("found https at the very beginning of the url");
+    // if found, cut out the https://
     url = url.slice(8);
-    //console.log(url);
   }
   if (url.indexOf("www.") === 0) {
-    //console.log("found www at the beginning of the url");
+    // if found, cut out the www.
     url = url.slice(4);
-    //console.log(url);
   }
   return url;
 };
@@ -41,12 +37,10 @@ const domainRegex = /^[a-z\d]([a-z\d-]{0,61}[a-z\d])?(.[a-z\d]([a-z\d-]{0,61}[a-
 
 const isUrlValid = (url) => {
   var obj = domainRegex.exec(url);
-  //console.log(obj);
+  // if url passes the regex, object exists, otherwise returns null
   if (obj != null) {
-    //console.log("Url matching regex - valid");
     return true;
   } else {
-    //console.log("Url NOT matching regex - invalid");
     return false;
   }
 };

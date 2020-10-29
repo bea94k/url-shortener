@@ -59,21 +59,31 @@ app.get("/:shortenedPath", (req, res) => {
 });
 
 // save a new url
-app.post("/shortenme", (req, res) => {
+app.post("/shortenme", async (req, res) => {
   const strippedUrl = helpers.stripUrl(req.body.originalUrl);
   console.log("stripped url: " + strippedUrl);
   if (helpers.isUrlValid(strippedUrl)) {
     console.log("stripped url is valid");
-    urlService
-      .createUrl(strippedUrl)
-      .then((response) => {
-        // sends back just the shortened path
-        // TO DO: add 'http:..' and my domain here
-        res.send(response);
-      })
-      .catch((err) => {
-        return err;
-      });
+    // check if the stripped url is already in the db
+    const urlFromDB = await urlService.getOne("originalUrl", strippedUrl);
+    console.log(urlFromDB);
+    if (urlFromDB.length === 1) {
+      // TO DO: add 'http:..' and my domain here
+      res.send(urlFromDB[0].shortenedPath);
+    } else if (urlFromDB.length === 0) {
+      urlService
+        .createUrl(strippedUrl)
+        .then((response) => {
+          // sends back just the shortened path
+          // TO DO: add 'http:..' and my domain here
+          res.send(response);
+        })
+        .catch((err) => {
+          return err;
+        });
+    } else {
+      res.send("Oopsies, something went wrong!");
+    }
   } else {
     console.log("stripped url is NOT valid");
     res.send("Invalid URL");

@@ -41,7 +41,7 @@ const domainOfUrl = (url) => {
 // dot and same rules for the segment after the dot
 // one or more ".something" segments
 // all case insensitive
-const domainRegex = /^[a-z\d]([a-z\d-]{0,61}[a-z\d])?(.[a-z\d]([a-z\d-]{0,61}[a-z\d])?)+$/i;
+const domainRegex = /^[a-z\d]([a-z\d-]{0,61}[a-z\d])?(\.[a-z\d]([a-z\d-]{0,61}[a-z\d])?)+$/i;
 
 const isDomainValid = (domain) => {
   var obj = domainRegex.exec(domain);

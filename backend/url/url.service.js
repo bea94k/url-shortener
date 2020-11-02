@@ -14,22 +14,21 @@ const getOne = async (key, value) => {
 };
 
 const createUrl = async (originalUrl) => {
-  const randomSixChars = await helpers.randomChars(6);
+  try {
+    const randomSixChars = await helpers.randomChars(6);
 
-  const newUrl = new Url({
-    originalUrl: originalUrl,
-    shortenedPath: `/${randomSixChars}`,
-  });
-  return newUrl
-    .save()
-    .then((doc) => {
-      console.log("Entry saved to db is:");
-      console.log(doc);
-      return doc.shortenedPath;
-    })
-    .catch((err) => {
-      return err;
+    const newUrl = new Url({
+      originalUrl: originalUrl,
+      shortenedPath: `/${randomSixChars}`,
     });
+
+    const doc = await newUrl.save();
+    console.log("Entry saved to db is:");
+    console.log(doc);
+    return doc.shortenedPath;
+  } catch (err) {
+    return err;
+  }
 };
 
 module.exports = { getAll, getOne, createUrl };

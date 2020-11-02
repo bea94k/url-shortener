@@ -7,10 +7,11 @@ const axios = require("axios");
 
 const Main = () => {
   const [longUrl, setLongUrl] = useState("");
+  const [responseFromApi, setResponseFromApi] = useState("");
+  const [errorFromApi, setErrorFromApi] = useState("");
 
   const handleInputChange = (event) => {
     setLongUrl(event.target.value);
-    console.log(longUrl);
   };
 
   const clearOnFocus = (event) => {
@@ -19,23 +20,37 @@ const Main = () => {
   };
 
   const sendLongUrl = (longUrl) => {
-    // axios call to API here
-    console.log("sending the long url to the api!");
+    // reset the response and error messages before every new shortening request
+    setResponseFromApi(null);
+    setErrorFromApi(null);
+
+    // POST long url to API, receive shortened one
+    console.log("sending the long url to the api...");
     console.log("long url: " + longUrl);
-    console.log("getting back a shortened one...");
+
+    axios
+      .post("http://localhost:5000/shortenme", { originalUrl: longUrl })
+      .then((resp) => {
+        console.log("getting back a shortened one...");
+        setResponseFromApi(resp.data);
+      })
+      .catch((err) => {
+        // all response with codes 4** and 5** comes here
+        setErrorFromApi(err.message);
+      });
   };
 
   // testing - get all
-  const testingGetAll = () => {
+  /*  const testingGetAll = () => {
     axios
       .get("http://localhost:5000/ping")
       .then((resp) => {
-        console.log(resp);
+        console.log(resp.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  };
+  }; */
 
   return (
     <div>
@@ -46,7 +61,7 @@ const Main = () => {
         clearOnFocus={clearOnFocus}
         /* clearOnFocus={testingGetAll} */
       />
-      <Output />
+      <Output shortUrl={responseFromApi} error={errorFromApi} />
     </div>
   );
 };

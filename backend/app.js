@@ -14,7 +14,7 @@ const helpers = require("./helpers.js");
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // allow cross-origin
 app.use(cors());
@@ -65,38 +65,33 @@ app.get("/:shortenedPath", (req, res) => {
 
 // save a new url
 app.post("/shortenme", async (req, res) => {
-  // take away http or www from the beginning - the original url to be eventually saved to db
-  const strippedUrl = helpers.stripUrl(req.body.originalUrl);
-  console.log("stripped url: " + strippedUrl);
+  try {
+    let response = "";
+    // take away http or www from the beginning - the original url to be eventually saved to db
+    const strippedUrl = helpers.stripUrl(req.body.originalUrl);
+    console.log("stripped url: " + strippedUrl);
 
-  // take the domain out of the url
-  const domain = helpers.domainOfUrl(strippedUrl);
+    // take the domain out of the url
+    const domain = helpers.domainOfUrl(strippedUrl);
 
-  if (helpers.isDomainValid(domain)) {
-    console.log("stripped url has a valid domain");
-    // check if the stripped url is already in the db
-    const urlFromDB = await urlService.getOne("originalUrl", strippedUrl);
+    if (helpers.isDomainValid(domain)) {
+      console.log("stripped url has a valid domain");
+      // check if the stripped url is already in the db
+      const urlFromDB = await urlService.getOne("originalUrl", strippedUrl);
 
-    if (urlFromDB.length === 1) {
-      // TO DO: add 'http:..' and my domain here
-      res.send(urlFromDB[0].shortenedPath);
-    } else if (urlFromDB.length === 0) {
-      urlService
-        .createUrl(strippedUrl)
-        .then((response) => {
-          // sends back just the shortened path
-          // TO DO: add 'http:..' and my domain here
-          res.send(response);
-        })
-        .catch((err) => {
-          return err;
-        });
+      // send back just the shortened path either from exissting DB entry or after saving new one
+      if (urlFromDB.length === 1) {
+        response = urlFromDB[0].shortenedPath;
+      } else if (urlFromDB.length === 0) {
+        response = await urlService.createUrl(strippedUrl);
+      }
     } else {
-      res.send("Oopsies, something went wrong!");
+      console.log("stripped url is NOT valid");
+      throw new Error("Invalid URL");
     }
-  } else {
-    console.log("stripped url is NOT valid");
-    res.send("Invalid URL");
+    res.send(response);
+  } catch (err) {
+    res.status(400).send(JSON.stringify({ message: err }));
   }
 });
 

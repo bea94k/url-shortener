@@ -9,7 +9,7 @@ const Input = (props) => {
         onChange={props.watchInputChange}
         onFocus={props.clearOnFocus}
       ></input>
-      <Button text="Make it short!" onClick={props.sendLongUrl} />
+      <Button text="Make it short!" onClick={props.triggerPostingUrl} />
     </div>
   );
 };

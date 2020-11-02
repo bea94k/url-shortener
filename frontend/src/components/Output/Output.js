@@ -4,7 +4,7 @@ const Output = (props) => {
   return (
     <div>
       <h4>OUTPUT</h4>
-      {props.shortUrl ? <p>{props.shortUrl}</p> : null}
+      {props.shortUrl ? <p>http://localhost:5000{props.shortUrl}</p> : null}
       {props.error ? <p>{props.error}</p> : null}
     </div>
   );

@@ -91,7 +91,7 @@ app.post("/shortenme", async (req, res) => {
     }
     res.send(response);
   } catch (err) {
-    res.status(400).send(JSON.stringify({ message: err }));
+    res.status(400).send(JSON.stringify({ message: err.message }));
   }
 });
 

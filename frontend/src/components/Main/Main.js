@@ -25,41 +25,28 @@ const Main = () => {
     setErrorFromApi(null);
 
     // POST long url to API, receive shortened one
-    console.log("sending the long url to the api...");
-    console.log("long url: " + longUrl);
-
     axios
       .post("http://localhost:5000/shortenme", { originalUrl: longUrl })
       .then((resp) => {
-        console.log("getting back a shortened one...");
         setResponseFromApi(resp.data);
       })
-      .catch((err) => {
+      .catch((error) => {
         // all response with codes 4** and 5** comes here
-        setErrorFromApi(err.message);
+        if (error.response) {
+          setErrorFromApi(error.response.data.message);
+        } else {
+          setErrorFromApi(error.message);
+        }
       });
   };
-
-  // testing - get all
-  /*  const testingGetAll = () => {
-    axios
-      .get("http://localhost:5000/ping")
-      .then((resp) => {
-        console.log(resp.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }; */
 
   return (
     <div>
       <Header />
       <Input
         watchInputChange={handleInputChange}
-        sendLongUrl={() => sendLongUrl(longUrl)}
+        triggerPostingUrl={() => sendLongUrl(longUrl)}
         clearOnFocus={clearOnFocus}
-        /* clearOnFocus={testingGetAll} */
       />
       <Output shortUrl={responseFromApi} error={errorFromApi} />
     </div>

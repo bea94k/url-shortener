@@ -3,6 +3,8 @@ const config = require("./config.js");
 const express = require("express");
 const bodyParser = require("body-parser");
 
+const cors = require("cors");
+
 const PORT = config.app.PORT;
 const HOST = config.app.HOST;
 
@@ -13,6 +15,9 @@ const helpers = require("./helpers.js");
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// allow cross-origin
+app.use(cors());
 
 // connect to DB
 DBconnection();

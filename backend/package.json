@@ -10,6 +10,7 @@
   "author": "Beata Kusnierz (https://github.com/bea94k)",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.10.10"
   },

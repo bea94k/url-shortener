@@ -10,5 +10,8 @@
     "build": "cd frontend && npm run build"
   },
   "author": "Beata Kusnierz (https://github.com/bea94k)",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": "10.x"
+  }
 }

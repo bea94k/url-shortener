@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd backend && node app.js"
+    "start": "cd backend && node app.js",
+    "install": "cd backend && npm install",
+    "build": "cd frontend && npm run build"
   },
   "author": "Beata Kusnierz (https://github.com/bea94k)",
   "license": "MIT"

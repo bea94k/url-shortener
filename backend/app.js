@@ -1,7 +1,6 @@
 const config = require("./config.js");
 
 const express = require("express");
-const bodyParser = require("body-parser");
 const favicon = require("express-favicon");
 const path = require("path");
 
@@ -16,18 +15,18 @@ const helpers = require("./helpers.js");
 
 const app = express();
 
-app.use(bodyParser.json());
+app.use(express.json());
 
 // allow cross-origin
 app.use(cors());
+
+// connect to DB
+DBconnection();
 
 // use the current directory
 app.use(favicon(__dirname + "/build/favicon.ico"));
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, "build")));
-
-// connect to DB
-DBconnection();
 
 // test endpoint
 app.get("/ping", (req, res) => {

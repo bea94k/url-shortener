@@ -5,6 +5,11 @@ import Output from "../Output/Output";
 
 const axios = require("axios");
 
+const hostname =
+  process.env.NODE_ENV === "local"
+    ? `http://localhost:${process.env.PORT}`
+    : "https://shortyshortyshorty.herokuapp.com";
+
 const Main = () => {
   const [longUrl, setLongUrl] = useState("");
   const [responseFromApi, setResponseFromApi] = useState("");
@@ -26,7 +31,7 @@ const Main = () => {
 
     // POST long url to API, receive shortened one
     axios
-      .post("http://localhost:5000/shortenme", { originalUrl: longUrl })
+      .post(`${hostname}/shortenme`, { originalUrl: longUrl })
       .then((resp) => {
         setResponseFromApi(resp.data);
       })
@@ -48,7 +53,11 @@ const Main = () => {
         triggerPostingUrl={() => sendLongUrl(longUrl)}
         clearOnFocus={clearOnFocus}
       />
-      <Output shortUrl={responseFromApi} error={errorFromApi} />
+      <Output
+        shortUrl={responseFromApi}
+        error={errorFromApi}
+        hostname={hostname}
+      />
     </div>
   );
 };

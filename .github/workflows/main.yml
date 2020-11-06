@@ -1,0 +1,24 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.6.8 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "shortyshorty" #Must be unique in Heroku
+          heroku_email: "beatakusnierz94@gmail.com"
+          usedocker: true
+          docker_build_args: |
+            NODE_ENV
+            MONGO_DB_CONNECT
+        env:
+          NODE_ENV: production
+          MONGO_DB_CONNECT: ${{ secrets.MONGO_DB_CONNECT }}

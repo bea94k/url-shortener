@@ -1,13 +1,10 @@
-const config = require("./config.js");
-
 const express = require("express");
 const favicon = require("express-favicon");
 const path = require("path");
 
 const cors = require("cors");
 
-const PORT = config.app.PORT || 8080;
-//const HOST = config.app.HOST;
+const PORT = process.env.PORT || 8080;
 
 const DBconnection = require("./db/db.service");
 const urlService = require("./url/url.service");

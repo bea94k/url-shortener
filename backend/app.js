@@ -2,11 +2,13 @@ const config = require("./config.js");
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const favicon = require("express-favicon");
+const path = require("path");
 
 const cors = require("cors");
 
-const PORT = config.app.PORT;
-const HOST = config.app.HOST;
+const PORT = config.app.PORT || 8080;
+//const HOST = config.app.HOST;
 
 const DBconnection = require("./db/db.service");
 const urlService = require("./url/url.service");
@@ -18,6 +20,11 @@ app.use(bodyParser.json());
 
 // allow cross-origin
 app.use(cors());
+
+// use the current directory
+app.use(favicon(__dirname + "/build/favicon.ico"));
+app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, "build")));
 
 // connect to DB
 DBconnection();
@@ -95,6 +102,10 @@ app.post("/shortenme", async (req, res) => {
   }
 });
 
-app.listen(PORT, HOST, () => {
-  console.log(`Server started at ${HOST}:${PORT}.`);
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+
+app.listen(PORT, () => {
+  console.log(`Server started at port ${PORT}.`);
 });

@@ -3,6 +3,8 @@ import Header from "../Header/Header";
 import Input from "../Input/Input";
 import Output from "../Output/Output";
 
+import "./Main.css";
+
 const axios = require("axios");
 
 const hostname =
@@ -46,18 +48,20 @@ const Main = () => {
   };
 
   return (
-    <div>
-      <Header />
-      <Input
-        watchInputChange={handleInputChange}
-        triggerPostingUrl={() => sendLongUrl(longUrl)}
-        clearOnFocus={clearOnFocus}
-      />
-      <Output
-        shortUrl={responseFromApi}
-        error={errorFromApi}
-        hostname={hostname}
-      />
+    <div className="main-wrap">
+      <div className="main">
+        <Header />
+        <Input
+          watchInputChange={handleInputChange}
+          triggerPostingUrl={() => sendLongUrl(longUrl)}
+          clearOnFocus={clearOnFocus}
+        />
+        <Output
+          shortUrl={responseFromApi}
+          error={errorFromApi}
+          hostname={hostname}
+        />
+      </div>
     </div>
   );
 };

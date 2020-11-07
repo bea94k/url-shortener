@@ -4,8 +4,14 @@ import "./Header.css";
 
 const Header = () => {
   return (
-    <div>
-      <h1>Shorten your longest URLs!</h1>
+    <div className="header">
+      <h1>
+        <span>C</span>ut <span>My U</span>rl
+      </h1>
+      <h3>
+        Tired of 100-character-long URLs? Cut them down - here at{" "}
+        <span>cmyu</span>.herokuapp.com!
+      </h3>
     </div>
   );
 };

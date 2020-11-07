@@ -1,0 +1,17 @@
+.output-area {
+    height: 5em;
+    padding: 0.5em;
+    border-radius: 5px;
+    margin-top: 0.5em;
+}
+
+.error-msg {
+    background: rgba(255, 0, 0, 0.233);
+    background: linear-gradient(0deg, rgba(255,0,0,0.23) 0%, rgba(255,255,255,0) 100%);
+    padding: 0.5em 1em;
+    height: 3em;
+}
+
+.shortened-link {
+    font-size: 0.9em;
+}

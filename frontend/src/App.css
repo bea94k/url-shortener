@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
 .app {
+    font-family: 'Comfortaa', sans-serif;
     height: 100vh;
     background-image: linear-gradient(to left top, #001111, #011616, #021a19, #021d1d, #002121);
     background-color: rgb(0, 17, 17);
     text-align: center;
     color: rgb(224, 253, 253);
+    line-height: 1.8em;
 }

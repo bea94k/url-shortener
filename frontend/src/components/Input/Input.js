@@ -5,7 +5,7 @@ import "./Input.css";
 
 const Input = (props) => {
   return (
-    <div>
+    <div className="input-wrapper">
       <input
         type="text"
         onChange={props.watchInputChange}

@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@700&display=swap');
+
+.header {
+    margin-bottom: 2em;
+}
+
+.header h1 {
+    text-transform: uppercase;
+    font-family: 'Baloo Tammudu 2', sans-serif;
+    font-size: 3em;
+    line-height: 2em;
+}
+
+.header span {
+    color: rgb(66, 255, 224);
+}

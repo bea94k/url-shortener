@@ -10,7 +10,7 @@ const axios = require("axios");
 const hostname =
   process.env.NODE_ENV === "local"
     ? `http://localhost:${process.env.PORT}`
-    : "https://shortyshortyshorty.herokuapp.com";
+    : "https://cmyu.herokuapp.com";
 
 const Main = () => {
   const [longUrl, setLongUrl] = useState("");

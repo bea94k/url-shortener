@@ -3,14 +3,13 @@ import Header from "../Header/Header";
 import Input from "../Input/Input";
 import Output from "../Output/Output";
 
+import config from "../../config-front";
+
 import "./Main.css";
 
 const axios = require("axios");
 
-const hostname =
-  process.env.NODE_ENV === "local"
-    ? `http://localhost:${process.env.PORT}`
-    : "https://cmyu.herokuapp.com";
+const hostname = config.app.HOST;
 
 const Main = () => {
   const [longUrl, setLongUrl] = useState("");

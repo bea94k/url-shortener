@@ -1,7 +1,9 @@
 {
-  "name": "frontend",
+  "name": "url-shortener-frontend",
   "version": "0.1.0",
+  "description": "Frontend of a full-stack web app for shortening URLs",
   "private": true,
+  "main": "index.js",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-brands-svg-icons": "^5.15.1",
@@ -38,5 +40,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "author": "Beata Kusnierz (https://github.com/bea94k)",
+  "license": "MIT"
 }

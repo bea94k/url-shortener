@@ -30,19 +30,6 @@ app.get("/ping", (req, res) => {
   res.send("Hello, seems like the testing endpoint works!");
 });
 
-// get all entries from the DB
-// for development, users shouldn't access it
-/* app.get("/getAll", (req, res) => {
-  urlService
-    .getAll()
-    .then((response) => {
-      res.send(response);
-    })
-    .catch((err) => {
-      return err;
-    });
-}); */
-
 // get to a specific shortened url - redirect to the original url
 app.get("/:shortenedPath", (req, res) => {
   urlService
@@ -69,6 +56,14 @@ app.get("/:shortenedPath", (req, res) => {
 // save a new url
 app.post("/shortenme", async (req, res) => {
   try {
+    if (
+      req.body.originalUrl === null ||
+      req.body.originalUrl === undefined ||
+      req.body.originalUrl === ""
+    ) {
+      throw new Error("You can't shorten nothing...");
+    }
+
     let response = "";
     // take away http or www from the beginning - the original url to be eventually saved to db
     const strippedUrl = helpers.stripUrl(req.body.originalUrl);

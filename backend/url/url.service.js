@@ -9,7 +9,7 @@ const getAll = async () => {
 
 const getOne = async (key, value) => {
   const foundEntries = await Url.find({ [key]: value }).exec();
-  //returns an array of entries, even if just one entry or empty array
+  // returns an array of entries, even if just one entry or empty array
   return foundEntries;
 };
 
@@ -23,8 +23,6 @@ const createUrl = async (originalUrl) => {
     });
 
     const doc = await newUrl.save();
-    console.log("Entry saved to db is:");
-    console.log(doc);
     return doc.shortenedPath;
   } catch (err) {
     return err;

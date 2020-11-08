@@ -31,6 +31,10 @@ app.get("/ping", (req, res) => {
   res.send("Hello, seems like the testing endpoint works!");
 });
 
+app.get("/notfound", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+
 // get to a specific shortened url - redirect to the original url
 app.get("/:shortenedPath", (req, res) => {
   urlService

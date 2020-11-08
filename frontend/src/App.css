@@ -20,3 +20,32 @@ a {
 a:hover {
     color:  rgb(66, 255, 224)
 }
+
+.content-wrap {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+}
+
+.blob {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.blob1 {
+    height: 100vh;
+    left: -20px;
+    top: -70px
+}
+
+@media only screen and (max-width: 600px) {
+    .blob1 {
+      height: 70vh;
+      width: 100vw;
+      top: 110px
+    }
+}

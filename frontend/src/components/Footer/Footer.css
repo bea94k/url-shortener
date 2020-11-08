@@ -3,6 +3,7 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100vw;
+    z-index: 1000;
 }
 
 .footer-icon {

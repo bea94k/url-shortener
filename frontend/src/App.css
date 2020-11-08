@@ -39,7 +39,8 @@ a:hover {
 .blob1 {
     height: 100vh;
     left: -20px;
-    top: -70px
+    top: -70px;
+    max-width: 100%;
 }
 
 @media only screen and (max-width: 600px) {

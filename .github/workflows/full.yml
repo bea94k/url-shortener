@@ -1,4 +1,4 @@
-name: Deploy
+name: DeployFullFeatures
 
 on:
   push:

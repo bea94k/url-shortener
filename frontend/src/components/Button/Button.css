@@ -8,6 +8,7 @@ button {
     border: none;
     border-radius: 5px;
     transition: all 0.5s;
+    height: 2.5em;
 }
 
 button:hover {

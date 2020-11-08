@@ -1,7 +1,8 @@
-.input-wrapper {
+.text-and-button-wrapper {
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0 2em;
 }
 
 input {
@@ -18,8 +19,9 @@ input {
 
 
 @media only screen and (max-width: 600px) {
-    .input-wrapper {
+    .text-and-button-wrapper {
         flex-direction: column;
+        padding: 0;
     }
 
     input {

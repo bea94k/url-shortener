@@ -12,7 +12,7 @@ const Input = (props) => {
   };
 
   return (
-    <div className="input-wrapper">
+    <div className="text-and-button-wrapper">
       <input
         type="text"
         onChange={props.watchInputChange}

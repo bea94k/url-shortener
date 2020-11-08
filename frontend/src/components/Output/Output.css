@@ -1,8 +1,9 @@
 .output-area {
     height: 5em;
-    padding: 0.5em;
+    padding: 0.5em 0;
     border-radius: 5px;
     margin-top: 0.5em;
+    width: 100%;
 }
 
 .error-msg {
@@ -10,8 +11,29 @@
     background: linear-gradient(0deg, rgba(255,0,0,0.23) 0%, rgba(255,255,255,0) 100%);
     padding: 0.5em 1em;
     height: 3em;
+    width: 250px;
+    margin: 0 auto;
+}
+
+.output-text-wrapper {
+    margin-bottom: 1em;
+    width: 70%;
 }
 
 .shortened-link {
     font-size: 0.9em;
+}
+
+.copy-success {
+    display: block;
+    color:rgb(66, 255, 224, 0.8);
+    width: 100%;
+    transition: all 2s;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .output-text-wrapper {
+        width: 100%;
+    }
 }

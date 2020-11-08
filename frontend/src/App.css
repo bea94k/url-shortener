@@ -9,3 +9,14 @@
     color: rgb(224, 253, 253);
     line-height: 1.8em;
 }
+
+
+a {
+    color:  rgb(66, 255, 224, 0.5);
+    text-decoration: none;
+    transition: all 0.5s;
+}
+
+a:hover {
+    color:  rgb(66, 255, 224)
+}

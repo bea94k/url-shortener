@@ -1,11 +1,11 @@
-.main-wrap {
+.overlay-wrap {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
 }
 
-.main {
+.overlay {
     margin: 2rem;
     padding: 1.5rem;
     min-height: 35vh;
@@ -19,7 +19,7 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .main {
+    .overlay {
         height: 80vh;
     }
 }

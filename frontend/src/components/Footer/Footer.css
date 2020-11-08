@@ -8,12 +8,3 @@ footer {
 .footer-icon {
     margin: 0 0.5em;
 }
-
-footer a {
-    color:  rgb(66, 255, 224, 0.5);
-    transition: all 0.5s;
-}
-
-footer a:hover {
-    color:  rgb(66, 255, 224)
-}

@@ -17,3 +17,4 @@ jobs:
           heroku_email: "beatakusnierz94@gmail.com"
         env:
           HD_MONGO_DB_CONNECT: ${{ secrets.MONGO_DB_CONNECT }}
+          HD_APP_HOSTNAME: "https://cmyu.herokuapp.com"

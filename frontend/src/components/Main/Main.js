@@ -47,8 +47,8 @@ const Main = () => {
   };
 
   return (
-    <div className="main-wrap">
-      <div className="main">
+    <div className="overlay-wrap">
+      <div className="overlay">
         <Header />
         <Input
           watchInputChange={handleInputChange}

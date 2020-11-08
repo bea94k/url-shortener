@@ -5,6 +5,7 @@ const path = require("path");
 const cors = require("cors");
 
 const PORT = process.env.PORT || 8080;
+const HOST = process.env.APP_HOSTNAME;
 
 const DBconnection = require("./db/db.service");
 const urlService = require("./url/url.service");
@@ -39,7 +40,8 @@ app.get("/:shortenedPath", (req, res) => {
       if (response.length === 1) {
         res.redirect(`http://${response[0].originalUrl}`);
       } else if (response.length === 0) {
-        res.status(404).send("no entries found");
+        //res.status(404).send("no entries found");
+        res.redirect(`${HOST}/notfound`);
       } else {
         res
           .status(500)

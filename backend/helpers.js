@@ -13,11 +13,11 @@ const stripUrl = (url) => {
   if (url.indexOf("http://") === 0) {
     // if found, cut out the http://
     url = url.slice(7);
-  }
-  if (url.indexOf("https://") === 0) {
+  } else if (url.indexOf("https://") === 0) {
     // if found, cut out the https://
     url = url.slice(8);
   }
+
   if (url.indexOf("www.") === 0) {
     // if found, cut out the www.
     url = url.slice(4);

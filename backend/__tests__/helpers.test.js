@@ -1,3 +1,7 @@
+// 1. setup - if I need any mocks
+// 2. execution - actually running the functions
+// 3. validation - is it what you expect it be?
+
 //const helpers = require('../helpers');
 // use: helpers.stripUrl
 
@@ -11,3 +15,77 @@ const {
   isDomainValid,
 } = require("../helpers");
 // use: stripUrl
+
+describe("stripUrl function tests", function () {
+  test("Strip URL containing http://", function () {
+    // setup
+    const url = "http://somedomain.com";
+    const expectedUrl = "somedomain.com";
+
+    // execution
+    const strippedUrl = stripUrl(url);
+
+    // validation
+    expect(strippedUrl).toBe(expectedUrl);
+  });
+
+  test("Strip URL containing https://", function () {
+    // setup
+    const url = "https://somedomain.com";
+    const expectedUrl = "somedomain.com";
+
+    // execution
+    const strippedUrl = stripUrl(url);
+
+    // validation
+    expect(strippedUrl).toBe(expectedUrl);
+  });
+
+  test("Strip URL containing www.", function () {
+    // setup
+    const url = "www.somedomain.com";
+    const expectedUrl = "somedomain.com";
+
+    // execution
+    const strippedUrl = stripUrl(url);
+
+    // validation
+    expect(strippedUrl).toBe(expectedUrl);
+  });
+
+  test("Strip URL containing http://www.", function () {
+    // setup
+    const url = "http://www.somedomain.com";
+    const expectedUrl = "somedomain.com";
+
+    // execution
+    const strippedUrl = stripUrl(url);
+
+    // validation
+    expect(strippedUrl).toBe(expectedUrl);
+  });
+
+  test("Strip URL containing https://www.", function () {
+    // setup
+    const url = "https://www.somedomain.com";
+    const expectedUrl = "somedomain.com";
+
+    // execution
+    const strippedUrl = stripUrl(url);
+
+    // validation
+    expect(strippedUrl).toBe(expectedUrl);
+  });
+
+  test("Strip URL NOT containing http://, https:// or www.", function () {
+    // setup
+    const url = "somedomain.com";
+    const expectedUrl = "somedomain.com";
+
+    // execution
+    const strippedUrl = stripUrl(url);
+
+    // validation
+    expect(strippedUrl).toBe(expectedUrl);
+  });
+});

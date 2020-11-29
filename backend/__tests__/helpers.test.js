@@ -109,7 +109,7 @@ describe("domainOfUrl function tests", function () {
     expect(domain).toBe(expectedUrl);
   });
 
-  test("Extract domain of URL with one subdomain", function () {
+  test("Extract domain of URL with one path", function () {
     const url = "somedomain.com/details";
     const expectedUrl = "somedomain.com";
 
@@ -118,7 +118,7 @@ describe("domainOfUrl function tests", function () {
     expect(domain).toBe(expectedUrl);
   });
 
-  test("Extract domain of URL with one subdomain, with trailing slash", function () {
+  test("Extract domain of URL with one path, with trailing slash", function () {
     const url = "somedomain.com/details/";
     const expectedUrl = "somedomain.com";
 
@@ -127,7 +127,7 @@ describe("domainOfUrl function tests", function () {
     expect(domain).toBe(expectedUrl);
   });
 
-  test("Extract domain of URL with two subdomains", function () {
+  test("Extract domain of URL with two paths", function () {
     const url = "somedomain.com/details/more";
     const expectedUrl = "somedomain.com";
 
@@ -136,12 +136,109 @@ describe("domainOfUrl function tests", function () {
     expect(domain).toBe(expectedUrl);
   });
 
-  test("Extract domain of URL with two subdomains, with trailing slash", function () {
+  test("Extract domain of URL with two paths, with trailing slash", function () {
     const url = "somedomain.com/details/more/";
     const expectedUrl = "somedomain.com";
 
     const domain = domainOfUrl(url);
 
     expect(domain).toBe(expectedUrl);
+  });
+});
+
+describe("isDomainValid function tests", function () {
+  test("Plain domain name is valid", function () {
+    const domain = "somedomain.com";
+    const expectedValidity = true;
+
+    const validity = isDomainValid(domain);
+
+    expect(validity).toBe(expectedValidity);
+    // expect(validity).toBe(true);
+
+    // truthy and falsy - treat 0 as falsy, so here it is risky
+    // expect(validity).toBeTruthy();
+    // expect(validity).not.toBeFalsy();
+  });
+
+  test("Plain domain name including dash is valid", function () {
+    const domain = "some-domain.com";
+    const expectedValidity = true;
+
+    const validity = isDomainValid(domain);
+
+    expect(validity).toBe(expectedValidity);
+  });
+
+  test("Plain domain name with two extensions is valid", function () {
+    const domain = "somedomain.com.pl";
+    const expectedValidity = true;
+
+    const validity = isDomainValid(domain);
+
+    expect(validity).toBe(expectedValidity);
+  });
+
+  test("Domain name with one character before dot is valid", function () {
+    const domain = "3.com";
+    const expectedValidity = true;
+
+    const validity = isDomainValid(domain);
+
+    expect(validity).toBe(expectedValidity);
+  });
+
+  test("IP address is valid", function () {
+    const domain = "66.171.248.170";
+    const expectedValidity = true;
+
+    const validity = isDomainValid(domain);
+
+    expect(validity).toBe(expectedValidity);
+  });
+
+  test("Domain ending with dash is NOT valid", function () {
+    const domain = "somedomain-.com";
+    const expectedValidity = false;
+
+    const validity = isDomainValid(domain);
+
+    expect(validity).toBe(expectedValidity);
+  });
+
+  test("Domain starting with dash is NOT valid", function () {
+    const domain = "-somedomain.com";
+    const expectedValidity = false;
+
+    const validity = isDomainValid(domain);
+
+    expect(validity).toBe(expectedValidity);
+  });
+
+  test("Domain starting and ending with dash is NOT valid", function () {
+    const domain = "-somedomain-.com";
+    const expectedValidity = false;
+
+    const validity = isDomainValid(domain);
+
+    expect(validity).toBe(expectedValidity);
+  });
+
+  test("Domain where the extension starts with dash is NOT valid", function () {
+    const domain = "somedomain.-com";
+    const expectedValidity = false;
+
+    const validity = isDomainValid(domain);
+
+    expect(validity).toBe(expectedValidity);
+  });
+
+  test("Domain where the extension ends with dash is NOT valid", function () {
+    const domain = "somedomain.com-";
+    const expectedValidity = false;
+
+    const validity = isDomainValid(domain);
+
+    expect(validity).toBe(expectedValidity);
   });
 });

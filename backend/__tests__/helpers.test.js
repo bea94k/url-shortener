@@ -89,3 +89,59 @@ describe("stripUrl function tests", function () {
     expect(strippedUrl).toBe(expectedUrl);
   });
 });
+
+describe("domainOfUrl function tests", function () {
+  test("Extract domain of URL with no slashes", function () {
+    const url = "somedomain.com";
+    const expectedUrl = "somedomain.com";
+
+    const domain = domainOfUrl(url);
+
+    expect(domain).toBe(expectedUrl);
+  });
+
+  test("Extract domain of URL with trailing slash", function () {
+    const url = "somedomain.com/";
+    const expectedUrl = "somedomain.com";
+
+    const domain = domainOfUrl(url);
+
+    expect(domain).toBe(expectedUrl);
+  });
+
+  test("Extract domain of URL with one subdomain", function () {
+    const url = "somedomain.com/details";
+    const expectedUrl = "somedomain.com";
+
+    const domain = domainOfUrl(url);
+
+    expect(domain).toBe(expectedUrl);
+  });
+
+  test("Extract domain of URL with one subdomain, with trailing slash", function () {
+    const url = "somedomain.com/details/";
+    const expectedUrl = "somedomain.com";
+
+    const domain = domainOfUrl(url);
+
+    expect(domain).toBe(expectedUrl);
+  });
+
+  test("Extract domain of URL with two subdomains", function () {
+    const url = "somedomain.com/details/more";
+    const expectedUrl = "somedomain.com";
+
+    const domain = domainOfUrl(url);
+
+    expect(domain).toBe(expectedUrl);
+  });
+
+  test("Extract domain of URL with two subdomains, with trailing slash", function () {
+    const url = "somedomain.com/details/more/";
+    const expectedUrl = "somedomain.com";
+
+    const domain = domainOfUrl(url);
+
+    expect(domain).toBe(expectedUrl);
+  });
+});

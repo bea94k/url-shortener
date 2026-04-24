@@ -1,5 +1,7 @@
 # CMyU - Cut My Url link shortener
 
+**Not maintained!**
+
 Full-stack web app for shortening URLs - because nobody likes 150-character-long links.
 
 Live at [cmyu.herokuapp.com](https://cmyu.herokuapp.com/)
